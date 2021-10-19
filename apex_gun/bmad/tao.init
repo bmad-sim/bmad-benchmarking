@@ -1,0 +1,50 @@
+!------------------------------------------------------------------------
+
+&tao_start
+ ! plot_file = 'tao_plot.init' 
+ ! startup_file = 'tao.startup'
+/
+!Beam Initialization
+!--------------------------------------------------------
+&tao_design_lattice
+  n_universes =1
+  design_lattice(1)%file = "apex_gun.bmad"
+/
+
+!------------------------------------------------------------------------
+&tao_params
+  !global%plot_on = True
+  global%track_type = 'single'
+  global%beam_timer_on = T
+  global%random_engine = 'pseudo'
+  global%de_lm_step_ratio = 1500
+  global%optimizer = 'lmdif'
+  global%n_opti_cycles = 100
+
+ ! global%prompt_color = 'BLUE'
+  !---Bmad---
+  bmad_com%radiation_damping_on = F
+  bmad_com%radiation_fluctuations_on = F
+  /
+
+
+&tao_beam_init
+  beam_init%n_particle = 1
+  beam_init%random_engine = 'quasi'
+  !beam_init%random_engine = 'pseudo'
+  ix_universe = 1
+  beam_saved_at =  "MARKER::*"
+beam_init%position_file = 'initial_particles.h5'
+
+  beam_dump_file = 'beam_dump.h5'
+  beam_dump_at = 'm_*'
+  beam_init%a_norm_emit = 2.5e-6
+  beam_init%b_norm_emit = 2.5e-6
+  beam_init%dPz_dz = 0.0
+  beam_init%n_bunch = 1
+  beam_init%bunch_charge = 1e-9
+  beam_init%sig_pz = 2.5e-4
+  beam_init%sig_z = 0.005
+/
+
+
