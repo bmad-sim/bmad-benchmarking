@@ -20,11 +20,20 @@ apex_gun: e_gun,
    aperture_at = continuous, aperture_type=wall3d,
    wall = {section={s=0, v(1) = {0, 0, 0.015}}, section={s=0.175, v(1)={0, 0, 0.015}} }
 
-P1: pipe, L = 0.2 - apex_gun[L]
+lcls2_solenoid: solenoid,
+  L = 0.48,
+  bs_field = 0.06,
+  tracking_method = time_runge_kutta, mat6_calc_method = tracking,
+  space_charge_method = fft_3d, field_calc = fieldmap,
+  grid_field = call::lcls2_solenoid_fieldmesh.h5
+  
+P1: pipe, L = 0.5 - apex_gun[L]
 
 
 
 GUN: apex_gun, voltage = 750e3, phi0 = 0/360
+SOL1: lcls2_solenoid, superimpose, ref = BEGINNING, offset = 0.24653
+SOL1[bs_field] = 0.057
 
 lat: line = (GUN, P1)
 
