@@ -14,30 +14,17 @@ space_charge_com[sigma_cutoff] = 0.01
 apex_gun: e_gun, 
    L = 0.175,
    tracking_method = time_runge_kutta,  mat6_calc_method = tracking, space_charge_method = fft_3d,
-   rf_frequency = 1e-10,
+   rf_frequency = 1300e6/7,
    field_calc = fieldmap, 
    grid_field = call::APEX_gun_fieldmesh.h5,
    aperture_at = continuous, aperture_type=wall3d,
    wall = {section={s=0, v(1) = {0, 0, 0.015}}, section={s=0.175, v(1)={0, 0, 0.015}} }
-   
-lcls2_solenoid: solenoid, 
-   L =  0.48,
-   bs_field = 0.06, ! T
-   tracking_method = runge_kutta,  mat6_calc_method = tracking, space_charge_method = fft_3d,
-   field_calc = fieldmap, 
-   !grid_field = call::lcls2_solenoid_grid.bmad
-    grid_field = call::lcls2_solenoid_fieldmesh.h5   
 
 P1: pipe, L = 0.2 - apex_gun[L]
 
 
 
 GUN: apex_gun, voltage = 750e3, phi0 = 0/360
-!SOL1: lcls2_solenoid, superimpose, ref = BEGINNING, offset = 0.24653
-!SOL1[bs_field] = 0.057
-!SOL1[bs_field] = 0
-
-!call, file = markers.bmad
 
 lat: line = (GUN, P1)
 
