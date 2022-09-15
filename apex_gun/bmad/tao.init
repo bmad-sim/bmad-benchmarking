@@ -2,7 +2,7 @@
 
 &tao_start
  ! plot_file = 'tao_plot.init' 
- !startup_file = 'beam.tao'
+ ! startup_file = 'beam.tao'
 /
 !Beam Initialization
 !--------------------------------------------------------
