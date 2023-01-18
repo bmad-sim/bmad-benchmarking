@@ -1,0 +1,4 @@
+set ele GUN phi0 = 0
+set beam_init n_particle = 10000
+set global track_type = beam
+quit
