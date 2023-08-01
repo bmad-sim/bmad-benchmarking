@@ -6,10 +6,13 @@ beginning[p0c] = 0
 parameter[geometry] = open
 parameter[particle] = electron
 
-bmad_com[csr_and_space_charge_on] = F
-space_charge_com[rel_tol_tracking] = 0.01
-space_charge_com[sigma_cutoff] = 0.01
+! Master switch to turn on/off space charge
+bmad_com[csr_and_space_charge_on] = F 
+! Parameters for fft_3d space charge
 space_charge_com[dt_track_step] = 1e-13
+space_charge_com[abs_tol_tracking] = 1d-10
+space_charge_com[rel_tol_tracking] = 0.01
+space_charge_com[space_charge_mesh_size] = (32,32,64)
 
 apex_gun: e_gun, 
    L = 0.175,
@@ -29,15 +32,13 @@ lcls2_solenoid: solenoid,
   
 P1: pipe, L = 0.5 - apex_gun[L]
 
-call, file = markers.bmad
-
 GUN: apex_gun, voltage = 750e3, phi0 = 0/360
 SOL1: lcls2_solenoid, superimpose, ref = BEGINNING, offset = 0.24653
 !SOL1[bs_field] = 0.057
 SOL1[bs_field] = 0
 
 *::*[tracking_method] = time_runge_kutta
-*::*[space_charge_method] = fft_3d
+call, file = markers.bmad
 
 lat: line = (GUN, P1)
 

@@ -36,8 +36,7 @@
   !beam_init%random_engine = 'pseudo'
   ix_universe = 1
   beam_saved_at =  "MARKER::*"
-beam_init%position_file = 'initial_particles.h5'
-
+  beam_init%position_file = 'initial_particles.h5'
   beam_dump_file = 'beam_dump.h5'
   beam_dump_at = 'MARKER::*'
   beam_init%a_norm_emit = 2.5e-6
