@@ -1,9 +1,0 @@
-alias np set beam_init n_particle = [[1]]
-alias beamon set global track_type = beam
-alias beamoff set global track_type = single
-!place r13 energy
-!place r23 e_field
-!place r33 b_field
-!set bmad_com csr_and_space_charge_on = T
-!np 100
-!beamon
